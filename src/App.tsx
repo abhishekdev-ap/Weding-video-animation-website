@@ -64,38 +64,67 @@ const GoldDust = ({ delay }: { delay: number; key?: React.Key }) => (
   </motion.div>
 );
 
-const FlowerPetal = ({ delay }: { delay: number; key?: React.Key }) => {
-  const colors = ['#e11d48', '#f43f5e', '#f472b6', '#fbbf24', '#f59e0b']; // Reds, pinks, oranges
+const PremiumPetal = ({ delay }: { delay: number; key?: React.Key }) => {
+  // 3D Cinematic Depth of Field Parameters
+  const size = Math.random() * 1.5 + 0.8; // 0.8rem to 2.3rem
+  const isForeground = Math.random() > 0.4;
+  const blurAmount = isForeground ? 0 : Math.random() * 4 + 2;
+  const zIndex = isForeground ? 60 : 40;
+  const opacityBase = isForeground ? 0.85 : 0.4;
+  
+  // Real SVG Paths for Rose Petal and Leaf
+  const petalPath = "M12 22C12 22 20 15 20 9C20 4.5 16 2 12 2C8 2 4 4.5 4 9C4 15 12 22 12 22Z";
+  const leafPath = "M17 8C17 8 13.5 4 8 4C2.5 4 2 8 2 8C2 8 5.5 12 11 12C16.5 12 17 8 17 8Z";
+  const isPetal = Math.random() > 0.2;
+  const path = isPetal ? petalPath : leafPath;
+  
+  // Luxury color palette (Deep reds, crimson, and antique gold)
+  const colors = isPetal ? ['#e11d48', '#be123c', '#9f1239', '#fb7185'] : ['#b45309', '#d97706', '#fbbf24', '#fcd34d']; 
   const color = colors[Math.floor(Math.random() * colors.length)];
+
   return (
     <motion.div
-      initial={{ top: '-10%', left: Math.random() * 100 + '%', rotate: 0, opacity: 0, scale: Math.random() * 0.8 + 0.5 }}
+      initial={{ 
+        top: '-10%', 
+        left: Math.random() * 100 + '%', 
+        rotateX: Math.random() * 360, 
+        rotateY: Math.random() * 360,
+        rotateZ: Math.random() * 360,
+        scale: size * 0.5
+      }}
       animate={{ 
         top: '110%', 
-        left: `calc(${Math.random() * 100}% + ${Math.random() * 200 - 100}px)`, 
-        rotate: 720,
-        opacity: [0, 1, 1, 0]
+        left: `calc(${Math.random() * 100}% + ${Math.random() * 400 - 200}px)`, 
+        rotateX: Math.random() * 720 + 360,
+        rotateY: Math.random() * 720 + 360,
+        rotateZ: Math.random() * 720 + 360,
       }}
       transition={{ 
-        duration: Math.random() * 60 + 80, // Extremely slow: 80s to 140s
-        delay, 
+        duration: Math.random() * 15 + 20, // 20s-35s ambient fall
+        delay: -(Math.random() * 35), // NEGATIVE delay: fast-forwards animation so they are ALREADY on screen
         repeat: Infinity, 
         ease: "linear" 
       }}
-      className="fixed w-6 h-6 md:w-8 md:h-8 select-none pointer-events-none z-[60]"
+      className={`fixed select-none pointer-events-none`}
+      style={{ 
+        zIndex, 
+        filter: `blur(${blurAmount}px)`, 
+        width: `${size}rem`, 
+        height: `${size}rem`,
+        opacity: opacityBase
+      }}
     >
-      <svg viewBox="0 0 24 24" fill={color} opacity="0.85" className="drop-shadow-[0_0_8px_rgba(0,0,0,0.5)]">
-        {/* Intricate flower petal shape */}
-        <path d="M12 22C12 22 20 15 20 9C20 4.5 16 2 12 2C8 2 4 4.5 4 9C4 15 12 22 12 22Z" />
+      <svg viewBox="0 0 24 24" fill={color} className="w-full h-full drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+        <path d={path} />
       </svg>
     </motion.div>
   );
 };
 
-const FlowerShower = () => (
+const PremiumFlowerShower = () => (
   <div className="fixed inset-0 overflow-hidden pointer-events-none z-[60]">
-    {[...Array(35)].map((_, i) => (
-      <FlowerPetal key={`flower-${i}`} delay={Math.random() * 5} />
+    {[...Array(45)].map((_, i) => (
+      <PremiumPetal key={`premium-petal-${i}`} delay={Math.random() * 30} />
     ))}
   </div>
 );
@@ -355,7 +384,7 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5 }}
           >
-            <FlowerShower />
+            <PremiumFlowerShower />
           </motion.div>
         )}
       </AnimatePresence>
