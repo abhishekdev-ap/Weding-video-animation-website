@@ -105,16 +105,16 @@ const PremiumPetal = ({ delay }: { delay: number; key?: React.Key }) => {
         repeat: Infinity, 
         ease: "linear" 
       }}
-      className={`fixed select-none pointer-events-none`}
+      className={`fixed select-none pointer-events-none will-change-transform`}
       style={{ 
         zIndex, 
-        filter: `blur(${blurAmount}px)`, 
+        filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none', 
         width: `${size}rem`, 
         height: `${size}rem`,
         opacity: opacityBase
       }}
     >
-      <svg viewBox="0 0 24 24" fill={color} className="w-full h-full drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
+      <svg viewBox="0 0 24 24" fill={color} className="w-full h-full opacity-80">
         <path d={path} />
       </svg>
     </motion.div>
@@ -123,7 +123,7 @@ const PremiumPetal = ({ delay }: { delay: number; key?: React.Key }) => {
 
 const PremiumFlowerShower = () => (
   <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    {[...Array(120)].map((_, i) => (
+    {[...Array(40)].map((_, i) => (
       <PremiumPetal key={`premium-petal-${i}`} delay={Math.random() * 30} />
     ))}
   </div>
@@ -465,9 +465,9 @@ export default function App() {
                   key="reveal"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.2, filter: "blur(20px)" }}
-                  transition={{ duration: 2.5 }}
-                  className="text-center px-4 w-full"
+                  exit={{ opacity: 0, scale: 1.1 }}
+                  transition={CINEMATIC_TRANSITION}
+                  className="text-center px-4 w-full will-change-transform"
                 >
                     <div className="flex flex-col items-center gap-6 md:gap-12 relative z-10">
                         {/* Huge background ampersand */}
@@ -521,11 +521,11 @@ export default function App() {
               {scene === SCENES.COUPLE && (
                   <motion.div
                   key="couple"
-                  initial={{ opacity: 0, z: -500 }}
-                  animate={{ opacity: 1, z: 0 }}
-                  exit={{ opacity: 0, filter: "blur(15px)", scale: 1.1 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
                   transition={CINEMATIC_TRANSITION}
-                  className="flex flex-col md:flex-row items-center gap-6 md:gap-32 overflow-y-auto max-h-full py-4 md:py-10 no-scrollbar relative"
+                  className="flex flex-col md:flex-row items-center gap-6 md:gap-32 overflow-y-auto max-h-full py-4 md:py-10 no-scrollbar relative will-change-transform"
                 >
                     <motion.div 
                       style={{ rotateX, rotateY }}
@@ -596,11 +596,11 @@ export default function App() {
               {scene === SCENES.MOMENTS && (
                   <motion.div
                   key="moments"
-                  initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   transition={CINEMATIC_TRANSITION}
-                  className="flex flex-col items-center justify-center gap-6 md:gap-16 px-4 py-4 md:py-10 relative"
+                  className="flex flex-col items-center justify-center gap-6 md:gap-16 px-4 py-4 md:py-10 relative will-change-transform"
                 >
                     <motion.div 
                       style={{ rotateX, rotateY }}
@@ -691,10 +691,11 @@ export default function App() {
               {scene === SCENES.CLOSING && (
                 <motion.div
                   key="closing"
-                  initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
                   transition={CINEMATIC_TRANSITION}
-                  className="flex flex-col items-center text-center max-w-4xl px-6 py-10 relative z-10"
+                  className="flex flex-col items-center text-center max-w-4xl px-6 py-10 relative z-10 will-change-transform"
                 >
                   <motion.div 
                     initial={{ scale: 0 }}
