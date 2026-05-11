@@ -77,7 +77,7 @@ const FlowerPetal = ({ delay }: { delay: number; key?: React.Key }) => {
         opacity: [0, 1, 1, 0]
       }}
       transition={{ 
-        duration: Math.random() * 15 + 20, // Fall very slowly for a premium, gentle vibe (20s to 35s)
+        duration: Math.random() * 30 + 40, // Even slower: 40s to 70s
         delay, 
         repeat: Infinity, 
         ease: "linear" 
