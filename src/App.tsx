@@ -69,7 +69,7 @@ const PremiumPetal = ({ delay }: { delay: number; key?: React.Key }) => {
   const size = Math.random() * 1.5 + 0.8; // 0.8rem to 2.3rem
   const isForeground = Math.random() > 0.4;
   const blurAmount = isForeground ? 0 : Math.random() * 4 + 2;
-  const zIndex = isForeground ? 60 : 40;
+  const zIndex = isForeground ? 5 : 0; // Put petals behind the photo cards (z-10)
   const opacityBase = isForeground ? 0.85 : 0.4;
   
   // Real SVG Paths for Rose Petal and Leaf
@@ -100,8 +100,8 @@ const PremiumPetal = ({ delay }: { delay: number; key?: React.Key }) => {
         rotateZ: Math.random() * 720 + 360,
       }}
       transition={{ 
-        duration: Math.random() * 15 + 20, // 20s-35s ambient fall
-        delay: -(Math.random() * 35), // NEGATIVE delay: fast-forwards animation so they are ALREADY on screen
+        duration: Math.random() * 120 + 180, // Near zero-gravity float: 180s to 300s (3 to 5 minutes!)
+        delay: -(Math.random() * 300), // Massive negative delay so they are already spread across the screen
         repeat: Infinity, 
         ease: "linear" 
       }}
@@ -122,8 +122,8 @@ const PremiumPetal = ({ delay }: { delay: number; key?: React.Key }) => {
 };
 
 const PremiumFlowerShower = () => (
-  <div className="fixed inset-0 overflow-hidden pointer-events-none z-[60]">
-    {[...Array(45)].map((_, i) => (
+  <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    {[...Array(120)].map((_, i) => (
       <PremiumPetal key={`premium-petal-${i}`} delay={Math.random() * 30} />
     ))}
   </div>
@@ -164,7 +164,7 @@ const ParticleField = () => (
 
 // Cinematic Constants
 const CINEMATIC_TRANSITION = {
-  duration: 3.5, // Extremely slow, elegant cinematic fade
+  duration: 2.5, // Faster, but still elegant cinematic fade
   ease: [0.19, 1, 0.22, 1]
 };
 
@@ -260,10 +260,10 @@ export default function App() {
     setScene(SCENES.SPLASH);
     
     const t1 = setTimeout(() => setScene(SCENES.REVEAL), 8000); // 8s
-    const t2 = setTimeout(() => setScene(SCENES.COUPLE), 18000); // 10s
-    const t3 = setTimeout(() => setScene(SCENES.MOMENTS), 28000); // 10s
-    const t4 = setTimeout(() => setScene(SCENES.DETAILS), 38000); // 10s
-    const t5 = setTimeout(() => setScene(SCENES.CLOSING), 48000); // 10s
+    const t2 = setTimeout(() => setScene(SCENES.COUPLE), 20000); // 12s
+    const t3 = setTimeout(() => setScene(SCENES.MOMENTS), 32000); // 12s
+    const t4 = setTimeout(() => setScene(SCENES.DETAILS), 44000); // 12s
+    const t5 = setTimeout(() => setScene(SCENES.CLOSING), 56000); // 12s
     
     timeoutsRef.current = [t1, t2, t3, t4, t5];
   }, [clearSequence]);
@@ -377,7 +377,7 @@ export default function App() {
       <ParticleField />
       
       <AnimatePresence>
-        {(scene === SCENES.COUPLE || scene === SCENES.MOMENTS) && (
+        {(scene === SCENES.COUPLE || scene === SCENES.MOMENTS || scene === SCENES.CLOSING) && (
           <motion.div 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
@@ -694,7 +694,7 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                   transition={CINEMATIC_TRANSITION}
-                  className="flex flex-col items-center text-center max-w-4xl px-6 py-10"
+                  className="flex flex-col items-center text-center max-w-4xl px-6 py-10 relative z-10"
                 >
                   <motion.div 
                     initial={{ scale: 0 }}
