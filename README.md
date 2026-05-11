@@ -4,6 +4,11 @@ A stunning, ultra-premium digital wedding invitation built with React, Vite, Tai
 
 This project was completely overhauled to feature an **Obsidian Black & Liquid Gold** luxury aesthetic, delivering a jaw-dropping, cinematic experience for the guests.
 
+## 🌐 Live Demo
+
+You can view the live, fully interactive version of this invitation here:
+**[View on Vercel](https://akshata-beauty-world.vercel.app/)**
+
 ## ✨ Premium Features
 
 - **Liquid Gold Text & Foil Effects**: Custom CSS masking and animated gradients that mimic real shimmering gold foil on high-contrast obsidian black.
