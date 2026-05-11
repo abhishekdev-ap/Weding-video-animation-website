@@ -7,7 +7,7 @@ This project was completely overhauled to feature an **Obsidian Black & Liquid G
 ## 🌐 Live Demo
 
 You can view the live, fully interactive version of this invitation here:
-**[View on Vercel](https://akshata-beauty-world.vercel.app/)**
+**[View on Vercel](https://wedding-invitation-abhishek-pavitra.vercel.app)**
 
 ## ✨ Premium Features
 
