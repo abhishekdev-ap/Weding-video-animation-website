@@ -77,7 +77,7 @@ const FlowerPetal = ({ delay }: { delay: number; key?: React.Key }) => {
         opacity: [0, 1, 1, 0]
       }}
       transition={{ 
-        duration: Math.random() * 30 + 40, // Even slower: 40s to 70s
+        duration: Math.random() * 60 + 80, // Extremely slow: 80s to 140s
         delay, 
         repeat: Infinity, 
         ease: "linear" 
@@ -105,7 +105,7 @@ const BloomingFrame = () => (
     viewBox="0 0 200 200" 
     className="absolute -inset-8 md:-inset-12 w-[calc(100%+4rem)] md:w-[calc(100%+6rem)] h-[calc(100%+4rem)] md:h-[calc(100%+6rem)] pointer-events-none opacity-60 z-0"
     animate={{ rotate: 360 }}
-    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+    transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
   >
     {[...Array(12)].map((_, i) => (
       <motion.path
@@ -116,7 +116,7 @@ const BloomingFrame = () => (
         strokeWidth="0.5"
         initial={{ scale: 0.8, opacity: 0.3 }}
         animate={{ scale: [0.8, 1.15, 0.8], opacity: [0.3, 1, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
+        transition={{ duration: 12, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
         style={{ originX: '100px', originY: '100px', rotate: i * 30 }}
       />
     ))}
