@@ -135,13 +135,13 @@ const ParticleField = () => (
 
 // Cinematic Constants
 const CINEMATIC_TRANSITION = {
-  duration: 1.8,
-  ease: [0.19, 1, 0.22, 1] // Dramatic ease out
+  duration: 3.5, // Extremely slow, elegant cinematic fade
+  ease: [0.19, 1, 0.22, 1]
 };
 
 const STAGGER_TRANSITION = (index: number) => ({
-  delay: 0.3 + (index * 0.15),
-  duration: 1.5,
+  delay: 0.5 + (index * 0.2), // Increased delay between staggered elements
+  duration: 2.0, // Slower stagger
   ease: [0.19, 1, 0.22, 1]
 });
 
@@ -230,11 +230,11 @@ export default function App() {
     setAutoPlayEnabled(true);
     setScene(SCENES.SPLASH);
     
-    const t1 = setTimeout(() => setScene(SCENES.REVEAL), 4500);
-    const t2 = setTimeout(() => setScene(SCENES.COUPLE), 9500);
-    const t3 = setTimeout(() => setScene(SCENES.MOMENTS), 15000);
-    const t4 = setTimeout(() => setScene(SCENES.DETAILS), 20500);
-    const t5 = setTimeout(() => setScene(SCENES.CLOSING), 26000);
+    const t1 = setTimeout(() => setScene(SCENES.REVEAL), 8000); // 8s
+    const t2 = setTimeout(() => setScene(SCENES.COUPLE), 18000); // 10s
+    const t3 = setTimeout(() => setScene(SCENES.MOMENTS), 28000); // 10s
+    const t4 = setTimeout(() => setScene(SCENES.DETAILS), 38000); // 10s
+    const t5 = setTimeout(() => setScene(SCENES.CLOSING), 48000); // 10s
     
     timeoutsRef.current = [t1, t2, t3, t4, t5];
   }, [clearSequence]);

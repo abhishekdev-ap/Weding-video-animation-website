@@ -28,6 +28,37 @@ body {
   perspective: 1000px;
 }
 
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-bg {
+  background: linear-gradient(-45deg, #011a14, #022c22, #04392a, #011a14);
+  background-size: 400% 400%;
+  animation: aurora 36s ease infinite;
+}
+
+@keyframes light-sweep {
+  0% { transform: translateX(-150%) skewX(-45deg); opacity: 0; }
+  20% { opacity: 0.5; }
+  50% { transform: translateX(150%) skewX(-45deg); opacity: 0; }
+  100% { transform: translateX(150%) skewX(-45deg); opacity: 0; }
+}
+
+.light-sweep-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(247, 231, 206, 0.4), transparent);
+  animation: light-sweep 12s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
 /* Liquid Gold Text */
 .liquid-gold-text {
   background: linear-gradient(to right, var(--gold-1), var(--gold-2), var(--gold-3), var(--gold-4), var(--gold-1));
