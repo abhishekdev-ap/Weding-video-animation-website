@@ -65,6 +65,7 @@ body {
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shine 4s linear infinite;
   text-shadow: 0 0 20px rgba(191, 149, 63, 0.2);

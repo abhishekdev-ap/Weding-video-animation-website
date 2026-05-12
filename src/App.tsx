@@ -679,7 +679,7 @@ export default function App() {
                             <h4 className="font-sans text-[10px] md:text-[15px] tracking-[0.5em] uppercase text-[var(--gold-1)] mb-4 md:mb-8 font-bold">The Venue</h4>
                             <span className="font-serif text-3xl md:text-7xl text-white mb-2 md:mb-6 leading-tight">Roopali Convention</span>
                             <div className="h-[2px] w-16 md:w-32 bg-[var(--gold-1)]/40 my-4 md:my-10" />
-                            <p className="font-serif italic text-lg md:text-4xl text-[var(--champagne)]/90 text-center mb-6 md:mb-8">Belgaum, Karnataka</p>
+                            <p className="font-serif italic text-lg md:text-4xl text-[var(--champagne)]/90 text-center mb-6 md:mb-8">Belagavi, Karnataka</p>
                             <span className="text-[var(--gold-2)] text-[10px] md:text-base uppercase tracking-widest flex items-center gap-2 border border-[var(--gold-1)]/40 px-6 py-2 md:px-8 md:py-3 rounded-full group-hover:bg-[var(--gold-1)] group-hover:text-[var(--obsidian)] transition-colors duration-500 font-bold">
                                 <MapPin size={18} /> View on Maps
                             </span>
